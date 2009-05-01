@@ -1,0 +1,25 @@
+<html>
+<head>
+  <title>gnarl</title>
+  <script type="text/javascript" src="public/javascripts/jquery.js"></script>
+  <script type="text/javascript" src="public/javascripts/disco.js"></script>
+  <script type="text/javascript" src="public/javascripts/gnarl.js"></script>
+  
+  <script type="text/javascript">
+    $(document).ready(function() {
+      Gnarl.initialize({ duration: 5000, limit: 5 });
+    });
+    
+    function gnarl() {
+      Gnarl.show({ image_path: '', title: 'title', message: 'A message.' });
+    }
+  </script>
+  
+  <link rel="stylesheet" type="text/css" href="public/stylesheets/gnarl.css" />
+</head>
+
+<body>
+  <a href="#" onclick="gnarl();">gnarl</a>
+  <div style="text-align: right">content</div>
+</body>
+</html>

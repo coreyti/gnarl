@@ -1,0 +1,84 @@
+div.gnarl {
+  position          : absolute;
+  top               : 10px;
+  right             : 20px;
+  z-index           : 99;
+}
+
+div.gnarl > div.message {
+  width             : 380px;
+  cursor            : pointer;
+  margin-bottom     : -20px;
+}
+
+div.gnarl > div.message > div.top,
+div.gnarl > div.message > div.mid,
+div.gnarl > div.message > div.btm {
+  background        : url(../images/sprite.png) no-repeat 0 0;
+}
+
+div.gnarl > div.message > div.top {
+  height            : 36px;
+  background-position : -380px 0px;
+}
+
+div.gnarl > div.message > div.btm {
+  height            : 41px;
+  background-position : -380px -41px;
+}
+
+div.gnarl > div.message > div.mid {
+  padding           : 0 30px;
+  background-repeat : repeat-y;
+}
+
+div.gnarl > div.message:hover > div.top {
+  background-position : -380px -82px;
+}
+
+div.gnarl > div.message:hover > div.mid {
+  background-position : -760px 0px;
+}
+
+div.gnarl > div.message:hover > div.btm {
+  background-position : -380px -123px;
+}
+
+div.gnarl > div.message ul {
+  list-style        : none;
+  margin            : 0;
+  padding           : 0;
+}
+
+div.gnarl > div.message ul > li {
+  margin            : 0;
+  padding           : 0;
+}
+
+div.gnarl > div.message ul > li {
+  font-family       : Arial, sans-serif;
+  font-weight       : bold;
+  color             : #FFF;
+  cursor            : pointer;
+  margin            : 0;
+  padding           : 0;
+}
+
+div.gnarl > div.message ul > li.icon {
+  float             : left;
+  width             : 32px;
+  height            : 32px;
+  background        : url(../images/icon.png) no-repeat;
+}
+
+div.gnarl > div.message ul > li.title {
+  font-size         : 14px;
+  line-height       : 16px;
+  margin-left       : 40px;
+}
+
+div.gnarl > div.message ul > li.message {
+  font-size         : 11px;
+  line-height       : 16px;
+  margin-left       : 40px;
+}
