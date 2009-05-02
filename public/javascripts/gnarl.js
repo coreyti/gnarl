@@ -1,6 +1,5 @@
-
 (function($) {
-  Gnarl = function() {};
+  function Gnarl() {};
 
   $.extend(Gnarl, {
     Panel : {},
@@ -85,5 +84,6 @@
       }
     }
   });
-})(jQuery);
 
+  $.Gnarl = Gnarl;
+})(jQuery);

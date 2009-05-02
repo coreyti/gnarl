@@ -7,11 +7,15 @@
   
   <script type="text/javascript">
     $(document).ready(function() {
-      Gnarl.initialize({ duration: 5000, limit: 5 });
+      $.Gnarl.initialize({ duration: 5000, limit: 5 });
     });
     
     function gnarl() {
-      Gnarl.show({ image_path: '', title: 'title', message: 'A message.' });
+      $.Gnarl.show({
+        image_path: '',
+        title: 'title',
+        message: 'A message.'
+      });
     }
   </script>
   
