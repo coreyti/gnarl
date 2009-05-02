@@ -56,7 +56,9 @@
         this.mouseout (function() { self.on_mouseout();  });
 
         this.fadeIn(1500, function() {
-          self.timer = setTimeout(function() { self.destroy(1500); }, Gnarl.duration);
+          self.timer = setTimeout(function() {
+            self.destroy(1500);
+          }, Gnarl.duration);
         });
       },
 
@@ -80,6 +82,7 @@
         var self = this;
         this.sections.fadeOut((arguments[0]), function() {
           self.slideUp('fast', function() { self.remove(); });
+          window.clearTimeout(self.timer);
         });
       }
     }
