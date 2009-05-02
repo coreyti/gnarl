@@ -7,11 +7,12 @@
   
   <script type="text/javascript">
     $(document).ready(function() {
-      Gnarl.initialize({ duration: 5000, limit: 5 });
+      Gnarl.initialize({ duration: 5000, limit: 3 });
     });
     
+    var count = 0;
     function gnarl() {
-      Gnarl.show({ image_path: '', title: 'title', message: 'A message.' });
+      Gnarl.display({ image_path: '', title: 'title', message: 'A message (' + (++ count) + ').' });
     }
   </script>
   

@@ -3,6 +3,7 @@
   Gnarl = function() {};
 
   $.extend(Gnarl, {
+    queue : [],
     Panel : {},
     View  : {},
 
@@ -14,9 +15,36 @@
       $('body').append(this.panel);
     },
 
-    show: function(options) {
-      var view = Disco.build(Gnarl.View, options);
+    display: function(options) {
+      var view    = Disco.build(Gnarl.View, options);
+
+      if(this.panel.count() < this.limit) {
+        this.append(view);
+      }
+      else {
+        this.queue.push(view);
+      }
+    },
+
+    append: function(view) {
+      var self = this;
       this.panel.append(view);
+
+      view.fadeIn(1500, function() {
+        view.timer = setTimeout(function() { self.remove(view); }, Gnarl.duration);
+      });
+    },
+
+    remove: function(view, speed) {
+      var self = this;
+      var next = this.queue.shift();
+
+      view.sections.fadeOut((speed || 1500), function() {
+        view.slideUp('fast', function() {
+          view.remove();
+          (next && self.append(next));
+        });
+      });
     }
   });
 
@@ -24,6 +52,12 @@
     content: function(builder) {
       with(builder) {
         div({ 'class': 'gnarl' });
+      }
+    },
+
+    methods: {
+      count: function() {
+        return this.children('div.message').length;
       }
     }
   });
@@ -52,17 +86,13 @@
           .append('<li class="title">'   + this.title   + '</li>')
           .append('<li class="message">' + this.message + '</li>');
 
-        this.click    (function() { self.on_click();     });
+        this.click    (function() { self.on_click(); });
         this.mouseover(function() { self.on_mouseover(); });
         this.mouseout (function() { self.on_mouseout();  });
-
-        this.fadeIn(1500, function() {
-          self.timer = setTimeout(function() { self.destroy(1500); }, Gnarl.duration);
-        });
       },
 
       on_click: function() {
-        this.destroy('fast');
+        Gnarl.remove(this, 'fast');;
       },
 
       on_mouseover: function() {
@@ -74,14 +104,7 @@
 
       on_mouseout: function() {
         var self = this;
-        this.timer = setTimeout(function() { self.destroy(1500); }, Gnarl.duration);
-      },
-
-      destroy: function() {
-        var self = this;
-        this.sections.fadeOut((arguments[0]), function() {
-          self.slideUp('fast', function() { self.remove(); });
-        });
+        this.timer = setTimeout(function() { Gnarl.remove(self); }, Gnarl.duration);
       }
     }
   });

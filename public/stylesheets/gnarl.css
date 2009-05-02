@@ -9,6 +9,7 @@ div.gnarl > div.message {
   width             : 380px;
   cursor            : pointer;
   margin-bottom     : -20px;
+  display           : none;
 }
 
 div.gnarl > div.message > div.top,
