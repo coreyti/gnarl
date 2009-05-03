@@ -83,9 +83,10 @@
         var self     = this;
         var content  = this.find('div.mid > ul');
 
-        this.icon    && content.append($('<li class="icon"></li>').css('background-image', 'url(' + this.icon + ')'));
-        this.title   && content.append('<li class="title">' + this.title + '</li>');
-        this.message && content.append('<li class="message">' + this.message + '</li>');
+        this.classname && this.addClass(this.classname);
+        this.icon      && content.append($('<li class="icon"></li>').css('background-image', 'url(' + this.icon + ')'));
+        this.title     && content.append('<li class="title">' + this.title + '</li>');
+        this.message   && content.append('<li class="message">' + this.message + '</li>');
 
         this.click    (function() { self.on_click(); });
         this.mouseover(function() { self.on_mouseover(); });
