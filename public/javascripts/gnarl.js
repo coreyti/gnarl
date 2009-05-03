@@ -78,18 +78,18 @@
 
     methods: {
       after_initialize: function() {
-        var self = this;
+        var self     = this;
+        var content  = this.find('div.mid > ul');
 
-        this.sections = this.children('div');
-
-        this.find('ul')
-          .append('<li class="icon"><!-- TODO --></li>')
-          .append('<li class="title">'   + this.title   + '</li>')
-          .append('<li class="message">' + this.message + '</li>');
+        this.icon    && content.append($('<li class="icon"></li>').css('background-image', 'url(' + this.icon + ')'));
+        this.title   && content.append('<li class="title">' + this.title + '</li>');
+        this.message && content.append('<li class="message">' + this.message + '</li>');
 
         this.click    (function() { self.on_click(); });
         this.mouseover(function() { self.on_mouseover(); });
         this.mouseout (function() { self.on_mouseout();  });
+
+        this.sections = this.children('div');
       },
 
       on_click: function() {
