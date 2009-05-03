@@ -4,6 +4,7 @@
   <script type="text/javascript" src="public/javascripts/jquery.js"></script>
   <script type="text/javascript" src="public/javascripts/disco.js"></script>
   <script type="text/javascript" src="public/javascripts/gnarl.js"></script>
+  <link rel="stylesheet" type="text/css" href="public/stylesheets/gnarl.css" />
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -11,20 +12,43 @@
     });
 
     var count = 0;
-    function gnarl() {
-      $.Gnarl.display({
-        icon    : 'public/images/icon.png',
-        title   : 'Title',
-        message : 'A message (' + (++ count) + ').'
-      });
+    function gnarl(overrides) {
+      $.Gnarl.display($.extend(
+        {
+          icon    : 'public/images/icon.png',
+          title   : 'Title',
+          message : 'A message (' + (++ count) + ').',
+        }, overrides)
+      );
     }
   </script>
 
-  <link rel="stylesheet" type="text/css" href="public/stylesheets/gnarl.css" />
+  <style type="text/css">
+    body {
+      font-family : "MS Trebuchet", Verdana, sans-serif;
+      font-size   : 12px;
+    }
+
+    div#content {
+      text-align  : center;
+      line-height : 200px;
+      border      : 1px solid #999;
+      background  : #CCC;
+      width       : 200px;
+      height      : 200px;
+      position    : absolute;
+      top         : 20px;
+      right       : 20px;
+    }
+  </style>
 </head>
 
 <body>
-  <a href="#" onclick="gnarl();">gnarl</a>
-  <div style="text-align: right">content</div>
+  <ul>
+    <li><a href="#" onclick="gnarl();">gnarl();</a></li>
+    <li><a href="#" onclick="gnarl({ sticky: true });">gnarl({ sticky: true });</a></li>
+  </ul>
+
+  <div id="content">some content</div>
 </body>
 </html>

@@ -15,7 +15,7 @@
     },
 
     display: function(options) {
-      var view    = Disco.build(Gnarl.View, options);
+      var view = Disco.build(Gnarl.View, options);
 
       if(this.panel.count() < this.limit) {
         this.append(view);
@@ -30,7 +30,9 @@
       this.panel.append(view);
 
       view.fadeIn(1500, function() {
-        view.timer = setTimeout(function() { self.remove(view); }, Gnarl.duration);
+        if( ! view.sticky) {
+          view.timer = window.setTimeout(function() { self.remove(view); }, Gnarl.duration);
+        }
       });
     },
 
@@ -97,15 +99,17 @@
       },
 
       on_mouseover: function() {
-        clearTimeout(this.timer);
+        window.clearTimeout(this.timer);
 
         this.sections.stop();
         this.sections.css({ 'opacity': '1.0' });
       },
 
       on_mouseout: function() {
-        var self = this;
-        this.timer = setTimeout(function() { Gnarl.remove(self); }, Gnarl.duration);
+        if( ! this.sticky) {
+          var self = this;
+          this.timer = window.setTimeout(function() { Gnarl.remove(self); }, Gnarl.duration);
+        }
       }
     }
   });
