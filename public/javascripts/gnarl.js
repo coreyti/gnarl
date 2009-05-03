@@ -105,6 +105,7 @@
 
       on_mouseout: function() {
         var self = this;
+        this.timer = setTimeout(function() { Gnarl.remove(self); }, Gnarl.duration);
       }
     }
   });
