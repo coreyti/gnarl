@@ -1,6 +1,5 @@
-
 (function($) {
-  Gnarl = function() {};
+  function Gnarl() {};
 
   $.extend(Gnarl, {
     queue : [],
@@ -42,6 +41,8 @@
       view.sections.fadeOut((speed || 1500), function() {
         view.slideUp('fast', function() {
           view.remove();
+          window.clearTimeout(view.timer);
+
           (next && self.append(next));
         });
       });
@@ -104,9 +105,9 @@
 
       on_mouseout: function() {
         var self = this;
-        this.timer = setTimeout(function() { Gnarl.remove(self); }, Gnarl.duration);
       }
     }
   });
-})(jQuery);
 
+  $.Gnarl = Gnarl;
+})(jQuery);
