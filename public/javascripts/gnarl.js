@@ -14,7 +14,7 @@
       $('body').append(this.panel);
     },
 
-    display: function(options) {
+    message: function(options) {
       var view = Disco.build(Gnarl.View, options);
 
       if(this.panel.count() < this.limit) {
